@@ -14,25 +14,17 @@
 </template>
 
 <script>
-export default {
-    name: 'categoriesIndex',
-    data() {
-        return {
-            categories: []
-        }
-    },
-    mounted() {
-        this.fetchCategories()
-    },
-    methods: {
-        fetchCategories(){
-            this.$http.get('http://localhost:3000/api/categories')
-                .then(response => {
-                  console.log(response)
-                  this.categories = response.data
-                })
-                .catch(error => console.log(error));
+
+    import {mapState} from 'vuex'
+
+    export default {
+        
+        name: 'categoriesIndex',
+        computed: mapState({
+            categories: state => state.categories
+        }),
+        mounted() {
+            this.$store.dispatch('fetchCategories')
         }
     }
-}
 </script>

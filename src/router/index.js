@@ -1,8 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import axios from 'axios';
-
-Vue.prototype.$http = axios
 
 import DashboardIndex from '../views/dashboard/Index';
 import HomeIndex from '../views/dashboard/children/homes/Index';
