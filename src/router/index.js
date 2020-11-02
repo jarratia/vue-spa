@@ -1,22 +1,24 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import axios from 'axios';
+
+Vue.prototype.$http = axios
+
+import DashboardIndex from '../views/dashboard/Index';
+import HomeIndex from '../views/dashboard/children/homes/Index';
+import CategoriesIndex from '../views/dashboard/children/categories/Index';
+
+
 
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
-    name: 'Home',
-    component: Home
-  },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    path: '/', component: DashboardIndex,
+    children: [
+      { path: '/', name: 'home_path', component: HomeIndex },
+      { path: '/categories', name: 'categories_path', component: CategoriesIndex }
+    ]
   }
 ]
 
